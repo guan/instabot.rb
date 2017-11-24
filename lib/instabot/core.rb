@@ -113,7 +113,7 @@ class Instabot
 		        # empty_space = 0 if empty_space < 0 
 			print "\r#{text}"
 			# $stdout.flush
-			# print  " " * empty_space
+			print  " "
 			# IO.console.flush
 		else
 			print "#{text}\n".white
