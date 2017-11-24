@@ -5,7 +5,7 @@ require "instabot/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "instabot"
-  spec.version       = Instabot::VERSION
+  spec.version       = Version::VERSION
   spec.authors       = ["eVanilla"]
   spec.email         = [""]
 
