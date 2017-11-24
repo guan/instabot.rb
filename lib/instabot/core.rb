@@ -107,9 +107,10 @@ class Instabot
 	
 	def custom_print(text="")
 		pretty_print_mode = options[:pretty_print]
-		empty_space =  IO.console.winsize[1] - text.size
-		empty_space = 0 if empty_space < 0 
+
 		if pretty_print_mode
+			empty_space =  IO.console.winsize[1] - text.size
+		        empty_space = 0 if empty_space < 0 
 			print "\r#{text}"
 			# $stdout.flush
 			print  " " * empty_space
