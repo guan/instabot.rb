@@ -129,7 +129,8 @@ module Modes
 
 	def auto_like
 		# medias.each do |media|
-		all_medias 	= medias
+		all_medias 	= medias.select{|e| e.present? }
+		
 		custom_puts "[+] ".cyan + "#{all_medias.size} Medias ready to like"
 		id 			= 0
 		while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
