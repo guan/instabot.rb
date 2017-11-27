@@ -135,6 +135,14 @@ module Modes
 		id 			= 0
 		while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
 			begin 
+				_media = all_medias[id]
+				
+				unless _media.present? && _media.length > 1
+					puts "unknown media. skipped"
+					id += 1
+					next
+				end
+				
 				get_media_informations(all_medias[id])
 				# custom_print "media informations:".cyan
 				# @informations.map {|key,val| custom_print "#{key}: #{val}"}
