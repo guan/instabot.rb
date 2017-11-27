@@ -148,7 +148,7 @@ module Modes
 			rescue Exception => e
 				puts "an error detected ... #{e}\n#{e.backtrace.inspect}\nignored"
 				id += 1
-				retry
+				next
 			end
 		end
 	end
