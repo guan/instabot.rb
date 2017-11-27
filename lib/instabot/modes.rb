@@ -129,7 +129,7 @@ module Modes
 
 	def auto_like
 		# medias.each do |media|
-		all_medias 	= medias.select{|e| e.present? }
+		all_medias 	= medias.select{|e| e.present? && e.length > 1 }
 		
 		custom_puts "[+] ".cyan + "#{all_medias.size} Medias ready to like"
 		id 			= 0
