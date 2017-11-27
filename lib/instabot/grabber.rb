@@ -2,23 +2,23 @@ module Grabber
 
 	def get_user_informations(user_id)
 		# puts "=".cyan*10
-		begin
-			user_page 	= "https://www.instagram.com/web/friendships/#{user_id}/follow/"
-			response 	= get_page(user_page)
-			last_page 	= @agent.history.last.uri.to_s
-			username	= last_page.split('/')[3]
-			response 	= @agent.get("https://instagram.com/#{username}/?__a=1")
-		rescue Exception => e
-			if response.code == "404"
-				puts "ERORR: [404] Notfound\t#{e.message}".red
-				exit!
-			elsif response.code == "403"
-				exit! if @error_403_times == 3
-				@error_403_times += 1 
-				puts "ERROR: [403] (looks like you're banned from IG)".red
-				retry
-			end
-		end	
+		# begin
+		user_page 	= "https://www.instagram.com/web/friendships/#{user_id}/follow/"
+		response 	= get_page(user_page)
+		last_page 	= @agent.history.last.uri.to_s
+		username	= last_page.split('/')[3]
+		response 	= @agent.get("https://instagram.com/#{username}/?__a=1")
+		# rescue Exception => e
+		# 	if response.code == "404"
+		# 		puts "ERORR: [404] Notfound\t#{e.message}".red
+		# 		exit!
+		# 	elsif response.code == "403"
+		# 		exit! if @error_403_times == 3
+		# 		@error_403_times += 1
+		# 		puts "ERROR: [403] (looks like you're banned from IG)".red
+		# 		retry
+		# 	end
+		# end
 		data = JSON.parse(response.body)
 		data.extend Hashie::Extensions::DeepFind
 
@@ -39,19 +39,19 @@ module Grabber
 	def get_media_informations(media_id)
 		# puts "=".cyan*10
 		custom_puts "[+] ".cyan + "Trying to get media (#{media_id}) information"
-		begin
-			response 	= @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
-		rescue Exception => e
-			if response.code == "404"
-				puts "ERORR: [404] Notfound\t#{e.message}".red
-				exit!
-			elsif response.code == "403"
-				exit! if @error_403_times == 3
-				@error_403_times += 1 
-				puts "ERROR: [403] (looks like you're banned from IG)".red
-				retry
-			end
-		end	
+		#begin
+		response 	= @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
+		#rescue Exception => e
+		# 	if response.code == "404"
+		# 		puts "ERORR: [404] Notfound\t#{e.message}".red
+		# 		exit!
+		# 	elsif response.code == "403"
+		# 		exit! if @error_403_times == 3
+		# 		@error_403_times += 1
+		# 		puts "ERROR: [403] (looks like you're banned from IG)".red
+		# 		retry
+		# 	end
+		# end
 		data 		= JSON.parse(response.body)
 		data.extend Hashie::Extensions::DeepFind
 		# pp data.extend Hashie::Extensions::DeepFind
